@@ -1,4 +1,4 @@
-var Form = function (id)
+var Form = function (id, action)
 {
 	var _this = this;
 
@@ -6,7 +6,23 @@ var Form = function (id)
 
 	this.element.onsubmit = function()
 	{
-		_this.onSubmit (_this.getData());
+		var data = _this.getData();
+
+		_this.element.querySelector(".error").innerHTML = '';
+
+		Ajax.post (action, data, function(resp)
+		{
+			if (resp.status == 'error')
+			{
+				_this.element.querySelector(".error").innerHTML = resp.mensaje;
+				return;
+			}
+			
+			if (resp.status == 'ok')
+				_this.onSuccess (resp);
+		});
+
+
 		return false;
 	};
 };
@@ -40,6 +56,6 @@ Form.prototype.getData = function()
 	return data;
 };
 
-Form.prototype.onSubmit = function(data)
+Form.prototype.onSuccess = function(data)
 {
 };

@@ -12,23 +12,28 @@
 	<script src="index-home.js"></script>
 
 	<script src="usuarios.js"></script>
+	<script src="ligas.js"></script>
+	<script src="equipos.js"></script>
+	<script src="personal.js"></script>
+	<script src="torneos.js"></script>
+	<script src="participantes.js"></script>
 </head>
 
 <body onload="main()">
 
 	<div class="tabs" id="tabs_1">
 		<a name="usuarios">Usuarios</a>
+		<a name="ligas">Ligas</a>
 		<a name="equipos">Equipos</a>
 		<a name="personal">Personal de Equipo</a>
-		<a name="ligas">Ligas</a>
 		<a name="torneos">Torneos</a>
+		<a name="participantes">Participantes</a>
 		<a onclick="salir();">Salir</a>
 	</div>
 
 	<div id="tabs_1_container">
 
 		<div name="usuarios">
-
 			<div class="tabs2" id="tabs_usuarios">
 				<a name="listar">Listado de Usuarios</a>
 				<a name="agregar">Agregar Usuario</a>
@@ -123,8 +128,341 @@
 			</div>
 		</div>
 
+		<div name="ligas">
+			<div class="tabs2" id="tabs_ligas">
+				<a name="listar">Listado de Ligas</a>
+				<a name="agregar">Agregar Liga</a>
+			</div>
+
+			<div id="tabs_ligas_container">
+				<div name="listar">
+					<h4>Lista de Ligas</h4>
+
+					<table id="tabla_ligas"></table>
+				</div>
+
+				<div name="agregar">
+					<h4>Agregar Liga</h4>
+
+					<form id="form_agregar_liga">
+						<div>
+							<label>Nombre:</label>
+							<input type="text" name="nombre"/>
+						</div>
+
+						<br/>
+
+						<div>
+							<input type="submit" value="OK"/>
+						</div>
+
+						<div class="error"></div>
+					</form>
+				</div>
+
+				<div name="editar">
+					<h4>Editar Liga</h4>
+
+					<form id="form_editar_liga">
+						<div>
+							<label>Nombre:</label>
+							<input type="text" name="nombre"/>
+						</div>
+
+						<br/>
+
+						<div>
+							<input type="submit" value="OK"/>
+						</div>
+
+						<div class="error"></div>
+
+						<input type="hidden" name="id"/>
+					</form>
+				</div>
+			</div>
+		</div>
+
 		<div name="equipos">
-			equpos
+			<div class="tabs2" id="tabs_equipos">
+				<a name="listar">Listado de Equipos</a>
+				<a name="agregar">Agregar Equpo</a>
+			</div>
+
+			<div id="tabs_equipos_container">
+				<div name="listar">
+					<h4>Lista de Equipos</h4>
+
+					<table id="tabla_equipos"></table>
+				</div>
+
+				<div name="agregar">
+					<h4>Agregar Equipo</h4>
+
+					<form id="form_agregar_equipo">
+						<div>
+							<label>Nombre:</label>
+							<input type="text" name="nombre"/>
+						</div>
+
+						<div>
+							<label>Liga:</label>
+							<select name="id_liga">
+							</select>
+						</div>
+
+						<br/>
+
+						<div>
+							<input type="submit" value="OK"/>
+						</div>
+
+						<div class="error"></div>
+					</form>
+				</div>
+
+				<div name="editar">
+					<h4>Editar Equipo</h4>
+
+					<form id="form_editar_equipo">
+						<div>
+							<label>Nombre:</label>
+							<input type="text" name="nombre"/>
+						</div>
+
+						<div>
+							<label>Liga:</label>
+							<select name="id_liga">
+							</select>
+						</div>
+
+						<br/>
+
+						<div>
+							<input type="submit" value="OK"/>
+						</div>
+
+						<div class="error"></div>
+
+						<input type="hidden" name="id"/>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div name="personal">
+			<div class="tabs2" id="tabs_personal">
+				<a name="listar">Listado de Personal</a>
+				<a name="agregar">Agregar Personal</a>
+			</div>
+
+			<div id="tabs_personal_container">
+				<div name="listar">
+					<h4>Lista de Personal</h4>
+
+					<table id="tabla_personal"></table>
+				</div>
+
+				<div name="agregar">
+					<h4>Agregar Personal</h4>
+
+					<form id="form_agregar_personal">
+						<div>
+							<label>Usuario:</label>
+							<select name="id_usuario"></select>
+						</div>
+
+						<div>
+							<label>Equipo:</label>
+							<select name="id_equipo"></select>
+						</div>
+
+						<div>
+							<label>Cargo:</label>
+							<input type="text" name="cargo"/>
+						</div>
+
+						<br/>
+
+						<div>
+							<input type="submit" value="OK"/>
+						</div>
+
+						<div class="error"></div>
+					</form>
+				</div>
+
+				<div name="editar">
+					<h4>Editar Personal</h4>
+
+					<form id="form_editar_personal">
+						<div>
+							<label>Usuario:</label>
+							<select name="id_usuario"></select>
+						</div>
+
+						<div>
+							<label>Equipo:</label>
+							<select name="id_equipo"></select>
+						</div>
+
+						<div>
+							<label>Cargo:</label>
+							<input type="text" name="cargo"/>
+						</div>
+
+						<br/>
+
+						<div>
+							<input type="submit" value="OK"/>
+						</div>
+
+						<div class="error"></div>
+
+						<input type="hidden" name="id"/>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div name="torneos">
+			<div class="tabs2" id="tabs_torneos">
+				<a name="listar">Listado de Torneos</a>
+				<a name="agregar">Agregar Torneo</a>
+			</div>
+
+			<div id="tabs_torneos_container">
+				<div name="listar">
+					<h4>Lista de Torneos</h4>
+
+					<table id="tabla_torneos"></table>
+				</div>
+
+				<div name="agregar">
+					<h4>Agregar Torneo</h4>
+
+					<form id="form_agregar_torneo">
+						<div>
+							<label>Liga:</label>
+							<select name="id_liga"></select>
+						</div>
+
+						<div>
+							<label>Nombre de Torneo:</label>
+							<input type="text" name="nombre"/>
+						</div>
+
+						<div>
+							<label>Fecha de Inicio:</label>
+							<input type="date" name="finicio"/>
+						</div>
+
+						<br/>
+
+						<div>
+							<input type="submit" value="OK"/>
+						</div>
+
+						<div class="error"></div>
+					</form>
+				</div>
+
+				<div name="editar">
+					<h4>Editar Torneo</h4>
+
+					<form id="form_editar_torneo">
+						<div>
+							<label>Liga:</label>
+							<select name="id_liga"></select>
+						</div>
+
+						<div>
+							<label>Nombre de Torneo:</label>
+							<input type="text" name="nombre"/>
+						</div>
+
+						<div>
+							<label>Fecha de Inicio:</label>
+							<input type="date" name="finicio"/>
+						</div>
+
+						<br/>
+
+						<div>
+							<input type="submit" value="OK"/>
+						</div>
+
+						<div class="error"></div>
+
+						<input type="hidden" name="id"/>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div name="participantes">
+			<div class="tabs2" id="tabs_participantes">
+				<a name="listar">Listado de Participantes</a>
+				<a name="agregar">Agregar Participante</a>
+			</div>
+
+			<div id="tabs_participantes_container">
+				<div name="listar">
+					<h4>Lista de Participantes</h4>
+
+					<table id="tabla_participantes"></table>
+				</div>
+
+				<div name="agregar">
+					<h4>Agregar Participante</h4>
+
+					<form id="form_agregar_participante">
+						<div>
+							<label>Torneo:</label>
+							<select name="id_torneo"></select>
+						</div>
+
+						<div>
+							<label>Equipo:</label>
+							<select name="id_equipo"></select>
+						</div>
+
+						<br/>
+
+						<div>
+							<input type="submit" value="OK"/>
+						</div>
+
+						<div class="error"></div>
+					</form>
+				</div>
+
+				<div name="editar">
+					<h4>Editar Participante</h4>
+
+					<form id="form_editar_participante">
+						<div>
+							<label>Torneo:</label>
+							<select name="id_torneo"></select>
+						</div>
+
+						<div>
+							<label>Equipo:</label>
+							<select name="id_equipo"></select>
+						</div>
+
+						<br/>
+
+						<div>
+							<input type="submit" value="OK"/>
+						</div>
+
+						<div class="error"></div>
+
+						<input type="hidden" name="id"/>
+					</form>
+				</div>
+			</div>
 		</div>
 
 	</div>

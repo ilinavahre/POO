@@ -39,5 +39,3 @@
 			$this->usertype = $this->campo('usertype');
 		}
 	};
-
-?>

@@ -1,30 +1,27 @@
 <?php
 
-	class Liga
+	require_once('ObjetoBase.php');
+
+	class Liga extends ObjetoBase
 	{
 		public $id;
 		public $nombre;
 
 		public function __construct ()
 		{
-			$this->id ='';
-			$this->nombre = '';
+			parent::__construct('ligas');
 		}
 
-		public function guardar ()
+		public function antesGuardar()
 		{
+			$this->datos['id'] = $this->id;
+			$this->datos['nombre'] = $this->nombre;
 		}
 
-		public function borrar ()
+		public function despuesCargar()
 		{
-		}
-
-		public function cargar ($id)
-		{
-		}
-
-		public function listar ()
-		{
+			$this->id = $this->campo('id');
+			$this->nombre = $this->campo('nombre');
 		}
 	};
 

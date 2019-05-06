@@ -14,4 +14,9 @@ function main()
 	tabs_1.show('usuarios');
 
 	Usuarios.init();
+	Ligas.init();
+	Equipos.init();
+	Personal.init();
+	Torneos.init();
+	Participantes.init();
 }

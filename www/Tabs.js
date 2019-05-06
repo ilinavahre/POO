@@ -21,7 +21,7 @@ var Tabs = function (id_header, id_container)
 
 Tabs.prototype.hideAll = function()
 {
-	var list = this.container.querySelectorAll("div[name]");
+	var list = this.container.children;
 
 	for (var i = 0; i < list.length; i++)
 		list[i].style.display = "none";
@@ -31,6 +31,14 @@ Tabs.prototype.show = function (name)
 {
 	this.hideAll();
 
-	var div = this.container.querySelector("div[name="+name+"]");
-	if (div) div.style.display = "block";
+	var list = this.container.children;
+
+	for (var i = 0; i < list.length; i++)
+	{
+		if (list[i].attributes.name && list[i].attributes.name.value == name)
+		{
+			list[i].style.display = "block";
+			break;
+		}
+	}
 };

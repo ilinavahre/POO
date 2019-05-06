@@ -6,12 +6,16 @@
 	{
 		public $datos;
 		public $nombreTabla;
+		
+		public $query_select;
 
 		public function __construct ($nombreTabla)
 		{
 			$this->nombreTabla = $nombreTabla;
 			$this->datos = [];
 			$this->despuesCargar();
+
+			$this->query_select = 'SELECT * FROM ' . $this->nombreTabla . ' AS a';
 		}
 
 		public function guardar()
@@ -62,18 +66,18 @@
 			$condicion = '';
 			
 			foreach ($campos as $nombre => $valor)
-				$condicion .= ' AND ' . $nombre . '=' . $conexion->quote($valor);
+				$condicion .= ' AND a.' . $nombre . '=' . $conexion->quote($valor);
 
 			if ($campos_not != null)
 			{
 				foreach ($campos_not as $nombre => $valor)
-					$condicion .= ' AND NOT ' . $nombre . '=' . $conexion->quote($valor);
+					$condicion .= ' AND NOT a.' . $nombre . '=' . $conexion->quote($valor);
 			}
 
 			if (strlen($condicion) != 0)
 				$condicion = substr($condicion, 5);
 
-			$this->datos = $conexion->obtenerFila ('SELECT * FROM ' . $this->nombreTabla . ' WHERE ' . $condicion . ' LIMIT 1');
+			$this->datos = $conexion->obtenerFila ($this->query_select . ' WHERE ' . $condicion . ' LIMIT 1');
 
 			if (count($this->datos) == 0)
 				$this->datos = [];
@@ -90,7 +94,7 @@
 		{
 			global $conexion;
 
-			$datos = $conexion->obtenerFilas ('SELECT * FROM ' . $this->nombreTabla);
+			$datos = $conexion->obtenerFilas ($this->query_select);
 			return $datos;
 		}
 

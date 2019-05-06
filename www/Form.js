@@ -4,6 +4,12 @@ var Form = function (id, action)
 
 	this.element = document.getElementById(id);
 
+	if (!this.element)
+	{
+		alert ('No se encuentra el formulario: ' + id);
+		return;
+	}
+
 	this.element.onsubmit = function()
 	{
 		var data = _this.getData();
@@ -30,7 +36,7 @@ Form.prototype.getData = function()
 {
 	var data = { };
 
-	var list = this.element.querySelectorAll("input");
+	var list = this.element.querySelectorAll("input,select");
 
 	for (var i = 0; i < list.length; i++)
 	{
@@ -57,7 +63,7 @@ Form.prototype.getData = function()
 
 Form.prototype.setData = function(data)
 {
-	var list = this.element.querySelectorAll("input");
+	var list = this.element.querySelectorAll("input,select");
 
 	for (var i = 0; i < list.length; i++)
 	{

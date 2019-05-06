@@ -22,7 +22,7 @@
 			$this->datos['id'] = $this->id;
 			$this->datos['nombre'] = $this->nombre;
 			$this->datos['apellido'] = $this->apellido;
-			$this->datos['fnac'] = $this->fnac;
+			$this->datos['fnac'] = $this->fnac ? $this->fnac : null;
 			$this->datos['username'] = $this->username;
 			$this->datos['password'] = $this->password;
 			$this->datos['usertype'] = $this->usertype;

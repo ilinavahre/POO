@@ -5,7 +5,7 @@ var Tabs = function (id_header, id_container)
 	this.header = document.getElementById (id_header);
 	this.container = document.getElementById (id_container);
 
-	this.links = this.header.querySelectorAll("a");
+	this.links = this.header.querySelectorAll("a[name]");
 
 	for (var i = 0; i < this.links.length; i++)
 	{
@@ -15,19 +15,16 @@ var Tabs = function (id_header, id_container)
 			return false;
 		};
 	}
-	
+
 	this.hideAll();
 };
 
 Tabs.prototype.hideAll = function()
 {
-	for (var i = 0; i < this.links.length; i++)
-	{
-		var link = this.links[i];
+	var list = this.container.querySelectorAll("div[name]");
 
-		var div = this.container.querySelector("div[name="+link.name+"]");
-		div.style.display = "none";
-	}
+	for (var i = 0; i < list.length; i++)
+		list[i].style.display = "none";
 };
 
 Tabs.prototype.show = function (name)
@@ -35,5 +32,5 @@ Tabs.prototype.show = function (name)
 	this.hideAll();
 
 	var div = this.container.querySelector("div[name="+name+"]");
-	div.style.display = "block";
+	if (div) div.style.display = "block";
 };

@@ -4,8 +4,8 @@
 
 	class ObjetoBase
 	{
-		protected $datos;
-		protected $nombreTabla;
+		public $datos;
+		public $nombreTabla;
 
 		public function __construct ($nombreTabla)
 		{
@@ -16,18 +16,46 @@
 
 		public function guardar()
 		{
+			global $conexion;
+
 			$this->antesGuardar();
+			
+			$campos = [];
+			$valores = [];
+			
+			$condicion = '';
+
+			foreach ($this->datos as $nombre => $valor)
+			{
+				if ($nombre == 'id')
+				{
+					if ($valor != '')
+						$condicion = 'id=' . $valor;
+
+					continue;
+				}
+
+				$campos[] = $nombre;
+				$valores[] = $valor === null ? 'NULL' : $conexion->quote($valor);
+			}
+
+			if ($condicion != '')
+				$query = 'UPDATE ' . $this->nombreTabla . ' SET ' . implode(',', array_map(function ($a, $b) { return $a.'='.$b; }, $campos, $valores)) . ' WHERE ' . $condicion;
+			else
+				$query = 'INSERT INTO ' . $this->nombreTabla . '(' . implode(',', $campos) . ') VALUES(' . implode(',', $valores) . ')';
+
+			return $conexion->ejecutar ($query);
 		}
 
 		public function borrar()
 		{
 			global $conexion;
 
-			if ($this->datos['id'] != '')
-				$conexion->ejecutar ('DELETE FROM ' . $this->nombreTabla . ' WHERE id=' . $this->datos['id']);
+			if ($this->campo('id') != '')
+				$conexion->ejecutar ('DELETE FROM ' . $this->nombreTabla . ' WHERE id=' . $this->campo('id'));
 		}
 
-		public function cargar ($campos)
+		public function cargar ($campos, $campos_not=null)
 		{
 			global $conexion;
 
@@ -35,6 +63,12 @@
 			
 			foreach ($campos as $nombre => $valor)
 				$condicion .= ' AND ' . $nombre . '=' . $conexion->quote($valor);
+
+			if ($campos_not != null)
+			{
+				foreach ($campos_not as $nombre => $valor)
+					$condicion .= ' AND NOT ' . $nombre . '=' . $conexion->quote($valor);
+			}
 
 			if (strlen($condicion) != 0)
 				$condicion = substr($condicion, 5);

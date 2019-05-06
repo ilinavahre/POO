@@ -27,6 +27,11 @@
 		{
 			$_SESSION[$nombre] = $valor;
 		}
+		
+		public static function limpiar ()
+		{
+			session_destroy();
+		}
 	};
 
 	Sesion::iniciar();

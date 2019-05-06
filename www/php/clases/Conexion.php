@@ -10,6 +10,7 @@
 		public $base;
 		
 		public $pdo;
+		public $last_query;
 
 		public function __construct ()
 		{
@@ -28,6 +29,7 @@
 
 		public function obtenerFilas ($consulta)
 		{
+			$this->last_query = $consulta;
 			$query = $this->pdo->query ($consulta);
 
 			if ($query == false)
@@ -38,6 +40,7 @@
 
 		public function obtenerFila ($consulta)
 		{
+			$this->last_query = $consulta;
 			$filas = $this->obtenerFilas($consulta);
 
 			if (count($filas) != 0)
@@ -48,12 +51,18 @@
 
 		public function ejecutar ($consulta)
 		{
+			$this->last_query = $consulta;
 			return $this->pdo->exec ($consulta);
 		}
 
 		public function quote ($valor)
 		{
 			return $this->pdo->quote ($valor);
+		}
+
+		public function error ()
+		{
+			return $this->pdo->errorInfo()[2];
 		}
 	};
 

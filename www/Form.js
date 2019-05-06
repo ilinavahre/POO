@@ -22,7 +22,6 @@ var Form = function (id, action)
 				_this.onSuccess (resp);
 		});
 
-
 		return false;
 	};
 };
@@ -54,6 +53,34 @@ Form.prototype.getData = function()
 	}
 	
 	return data;
+};
+
+Form.prototype.setData = function(data)
+{
+	var list = this.element.querySelectorAll("input");
+
+	for (var i = 0; i < list.length; i++)
+	{
+		var input = list[i];
+
+		if (input.type == "submit")
+			continue;
+
+		if (input.type == "checkbox")
+		{
+			if (~~data[input.name])
+				input.checked = true;
+			else
+				input.checked = false;
+
+			continue;
+		}
+
+		if (data[input.name])
+			input.value = data[input.name];
+		else
+			input.value = '';
+	}
 };
 
 Form.prototype.onSuccess = function(data)

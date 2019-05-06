@@ -1,1 +1,134 @@
-index-home
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link href="estilo.css" rel="stylesheet" type="text/css">
+
+	<script src="Form.js"></script>
+	<script src="Tabs.js"></script>
+	<script src="Table.js"></script>
+	<script src="Ajax.js"></script>
+
+	<script src="index-home.js"></script>
+
+	<script src="usuarios.js"></script>
+</head>
+
+<body onload="main()">
+
+	<div class="tabs" id="tabs_1">
+		<a name="usuarios">Usuarios</a>
+		<a name="equipos">Equipos</a>
+		<a name="personal">Personal de Equipo</a>
+		<a name="ligas">Ligas</a>
+		<a name="torneos">Torneos</a>
+		<a onclick="salir();">Salir</a>
+	</div>
+
+	<div id="tabs_1_container">
+
+		<div name="usuarios">
+
+			<div class="tabs2" id="tabs_usuarios">
+				<a name="listar">Listado de Usuarios</a>
+				<a name="agregar">Agregar Usuario</a>
+			</div>
+
+			<div id="tabs_usuarios_container">
+				<div name="listar">
+					<h4>Lista de Usuarios</h4>
+
+					<table id="tabla_usuarios"></table>
+				</div>
+
+				<div name="agregar">
+					<h4>Agregar Usuarios</h4>
+
+					<form id="form_agregar_usuario">
+						<div>
+							<label>Nombre:</label>
+							<input type="text" name="nombre"/>
+						</div>
+
+						<div>
+							<label>Apellido:</label>
+							<input type="text" name="apellido"/>
+						</div>
+
+						<div>
+							<label>Nombre de Usuario:</label>
+							<input type="text" name="username"/>
+						</div>
+
+						<div>
+							<label>Contraseña:</label>
+							<input type="text" name="password"/>
+						</div>
+
+						<div>
+							<label>Fecha de Nacimiento:</label>
+							<input type="date" name="fnac"/>
+						</div>
+
+						<br/>
+
+						<div>
+							<input type="submit" value="OK"/>
+						</div>
+
+						<div class="error"></div>
+					</form>
+				</div>
+
+				<div name="editar">
+					<h4>Editar Usuario</h4>
+
+					<form id="form_editar_usuario">
+						<div>
+							<label>Nombre:</label>
+							<input type="text" name="nombre"/>
+						</div>
+
+						<div>
+							<label>Apellido:</label>
+							<input type="text" name="apellido"/>
+						</div>
+
+						<div>
+							<label>Nombre de Usuario:</label>
+							<input type="text" name="username"/>
+						</div>
+
+						<div>
+							<label>Contraseña:</label>
+							<input type="text" name="password"/>
+						</div>
+
+						<div>
+							<label>Fecha de Nacimiento:</label>
+							<input type="date" name="fnac"/>
+						</div>
+
+						<br/>
+
+						<div>
+							<input type="submit" value="OK"/>
+						</div>
+
+						<div class="error"></div>
+
+						<input type="hidden" name="id"/>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div name="equipos">
+			equpos
+		</div>
+
+	</div>
+
+</body>
+
+</html>

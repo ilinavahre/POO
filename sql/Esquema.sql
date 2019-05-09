@@ -34,9 +34,9 @@ CREATE TABLE ligas(
 
 DROP TABLE personal;
 CREATE TABLE personal(
+	id serial primary key,
 	id_usuario int not null,
 	id_equipo int not null,
-	primary key(id_usuario, id_equipo),
 	cargo varchar(20)
 );
 
@@ -48,21 +48,21 @@ CREATE TABLE torneos(
 	finicio date
 );
 
+DROP TABLE participantes;
+CREATE TABLE participantes(
+	id serial primary key,
+	id_torneo int,
+	id_equipo int
+);	
+
 DROP TABLE rondas;
 CREATE TABLE rondas(
 	id serial primary key,
 	id_torneo int not null,
 	nombre varchar(30),
-	fecha timestamp without time zone,
+	fecha date,
 	id_equipoA int not null,
 	id_equipoB int not null,
 	puntajeA int,
 	puntajeB int
 );
-	
-DROP TABLE participantes;
-CREATE TABLE participantes(
-	id_torneo int,
-	id_equipo int,
-	primary key(id_torneo, id_equipo)
-);	

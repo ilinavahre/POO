@@ -19,4 +19,5 @@ function main()
 	Personal.init();
 	Torneos.init();
 	Participantes.init();
+	Rondas.init();
 }

@@ -60,7 +60,7 @@ CREATE TABLE rondas(
 	id serial primary key,
 	id_torneo int not null,
 	nombre varchar(30),
-	fecha timestamp without time zone,
+	fecha date,
 	id_equipoA int not null,
 	id_equipoB int not null,
 	puntajeA int,

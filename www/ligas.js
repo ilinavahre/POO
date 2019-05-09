@@ -7,18 +7,26 @@ var Ligas =
 		this.tabs = new Tabs ('tabs_ligas', 'tabs_ligas_container');
 		this.tabs.show('listar');
 
+		this.tabs.onTabActivate = function(name)
+		{
+			switch(name)
+			{
+				case 'listar':
+					_this.tabla.load();
+					break;
+			}
+		};
+
 		this.form_agregar_liga = new Form ("form_agregar_liga", "php/agregar-liga.php");
 		this.form_agregar_liga.onSuccess = function (data)
 		{
 			_this.form_agregar_liga.setData({ });
-			_this.tabla.load();
 			_this.tabs.show('listar');
 		};
 
 		this.form_editar_liga = new Form ("form_editar_liga", "php/editar-liga.php");
 		this.form_editar_liga.onSuccess = function (data)
 		{
-			_this.tabla.load();
 			_this.tabs.show('listar');
 		};
 

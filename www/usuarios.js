@@ -6,19 +6,27 @@ var Usuarios =
 
 		this.tabs = new Tabs ('tabs_usuarios', 'tabs_usuarios_container');
 		this.tabs.show('listar');
+		
+		this.tabs.onTabActivate = function(name)
+		{
+			switch(name)
+			{
+				case 'listar':
+					_this.tabla.load();
+					break;
+			}
+		};
 
 		this.form_agregar_usuario = new Form ("form_agregar_usuario", "php/agregar-usuario.php");
 		this.form_agregar_usuario.onSuccess = function (data)
 		{
 			_this.form_agregar_usuario.setData({ });
-			_this.tabla.load();
 			_this.tabs.show('listar');
 		};
 
 		this.form_editar_usuario = new Form ("form_editar_usuario", "php/editar-usuario.php");
 		this.form_editar_usuario.onSuccess = function (data)
 		{
-			_this.tabla.load();
 			_this.tabs.show('listar');
 		};
 

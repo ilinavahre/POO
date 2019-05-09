@@ -7,18 +7,26 @@ var Personal =
 		this.tabs = new Tabs ('tabs_personal', 'tabs_personal_container');
 		this.tabs.show('listar');
 
+		this.tabs.onTabActivate = function(name)
+		{
+			switch(name)
+			{
+				case 'listar':
+					_this.tabla.load();
+					break;
+			}
+		};
+
 		this.form_agregar_personal = new Form ("form_agregar_personal", "php/agregar-personal.php");
 		this.form_agregar_personal.onSuccess = function (data)
 		{
 			_this.form_agregar_personal.setData({ });
-			_this.tabla.load();
 			_this.tabs.show('listar');
 		};
 
 		this.form_editar_personal = new Form ("form_editar_personal", "php/editar-personal.php");
 		this.form_editar_personal.onSuccess = function (data)
 		{
-			_this.tabla.load();
 			_this.tabs.show('listar');
 		};
 

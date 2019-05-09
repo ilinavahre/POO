@@ -35,7 +35,7 @@ Table.prototype.load_data = function (list)
 		html += "<tr>";
 
 		for (var i in list[j])
-			html += "<td>" + (list[j][i] || '') + "</td>";
+			html += "<td>" + (list[j][i].toString() || '') + "</td>";
 
 		html += "</tr>";
 	}

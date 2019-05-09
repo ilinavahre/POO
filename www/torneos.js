@@ -7,18 +7,26 @@ var Torneos =
 		this.tabs = new Tabs ('tabs_torneos', 'tabs_torneos_container');
 		this.tabs.show('listar');
 
+		this.tabs.onTabActivate = function(name)
+		{
+			switch(name)
+			{
+				case 'listar':
+					_this.tabla.load();
+					break;
+			}
+		};
+
 		this.form_agregar_torneo = new Form ("form_agregar_torneo", "php/agregar-torneo.php");
 		this.form_agregar_torneo.onSuccess = function (data)
 		{
 			_this.form_agregar_torneo.setData({ });
-			_this.tabla.load();
 			_this.tabs.show('listar');
 		};
 
 		this.form_editar_torneo = new Form ("form_editar_torneo", "php/editar-torneo.php");
 		this.form_editar_torneo.onSuccess = function (data)
 		{
-			_this.tabla.load();
 			_this.tabs.show('listar');
 		};
 

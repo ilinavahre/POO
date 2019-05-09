@@ -37,8 +37,14 @@ Tabs.prototype.show = function (name)
 	{
 		if (list[i].attributes.name && list[i].attributes.name.value == name)
 		{
+			this.onTabActivated (name);
+
 			list[i].style.display = "block";
 			break;
 		}
 	}
+};
+
+Tabs.prototype.onTabActivated = function (name)
+{
 };

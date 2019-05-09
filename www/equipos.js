@@ -7,18 +7,26 @@ var Equipos =
 		this.tabs = new Tabs ('tabs_equipos', 'tabs_equipos_container');
 		this.tabs.show('listar');
 
+		this.tabs.onTabActivate = function(name)
+		{
+			switch(name)
+			{
+				case 'listar':
+					_this.tabla.load();
+					break;
+			}
+		};
+
 		this.form_agregar_equipo = new Form ("form_agregar_equipo", "php/agregar-equipo.php");
 		this.form_agregar_equipo.onSuccess = function (data)
 		{
 			_this.form_agregar_equipo.setData({ });
-			_this.tabla.load();
 			_this.tabs.show('listar');
 		};
 
 		this.form_editar_equipo = new Form ("form_editar_equipo", "php/editar-equipo.php");
 		this.form_editar_equipo.onSuccess = function (data)
 		{
-			_this.tabla.load();
 			_this.tabs.show('listar');
 		};
 
@@ -31,7 +39,7 @@ var Equipos =
 			for (var i = 0; i < data.length; i++)
 				options += "<option value='" + data[i].id + "'>" + data[i].nombre + "</option>";
 
-			var list = document.querySelectorAll("select[name='id_equipo']");
+			var list = document.querySelectorAll("select[name='id_equipo'], select[name='id_equipoA'], select[name='id_equipoB']");
 			for (var i = 0; i < list.length; i++)
 				list[i].innerHTML = options;
 

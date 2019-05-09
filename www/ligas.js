@@ -7,7 +7,7 @@ var Ligas =
 		this.tabs = new Tabs ('tabs_ligas', 'tabs_ligas_container');
 		this.tabs.show('listar');
 
-		this.tabs.onTabActivate = function(name)
+		this.tabs.onTabActivated = function(name)
 		{
 			switch(name)
 			{

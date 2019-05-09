@@ -7,7 +7,7 @@ var Equipos =
 		this.tabs = new Tabs ('tabs_equipos', 'tabs_equipos_container');
 		this.tabs.show('listar');
 
-		this.tabs.onTabActivate = function(name)
+		this.tabs.onTabActivated = function(name)
 		{
 			switch(name)
 			{

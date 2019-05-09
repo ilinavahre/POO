@@ -7,7 +7,7 @@ var Personal =
 		this.tabs = new Tabs ('tabs_personal', 'tabs_personal_container');
 		this.tabs.show('listar');
 
-		this.tabs.onTabActivate = function(name)
+		this.tabs.onTabActivated = function(name)
 		{
 			switch(name)
 			{

@@ -7,7 +7,7 @@ var Participantes =
 		this.tabs = new Tabs ('tabs_participantes', 'tabs_participantes_container');
 		this.tabs.show('listar');
 
-		this.tabs.onTabActivate = function(name)
+		this.tabs.onTabActivated = function(name)
 		{
 			switch(name)
 			{

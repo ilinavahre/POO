@@ -7,7 +7,7 @@ var Rondas =
 		this.tabs = new Tabs ('tabs_rondas', 'tabs_rondas_container');
 		this.tabs.show('listar');
 
-		this.tabs.onTabActivate = function(name)
+		this.tabs.onTabActivated = function(name)
 		{
 			switch(name)
 			{
